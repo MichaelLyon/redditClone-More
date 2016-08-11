@@ -1,4 +1,4 @@
-angular.module('redditClone', ['redditClone.controllers','redditClone.services'])
+angular.module('redditClone', ['redditClone.controllers','redditClone.services', 'redditClone.services'])
 //
 // .config(['$state', function(){
 //   $state

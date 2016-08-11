@@ -19,8 +19,6 @@ body{
     width: 100%;
 }
 .redditSubbredditPictureDiv{
-  /*position: relative;
-  left:0;*/
   width: 20%;
   height: 100%;
   display: inline-block;
@@ -33,4 +31,11 @@ body{
   width: 75%;
   height: 100%;
   vertical-align: top;
+}
+.redditSubredditsTitle{
+  margin: 0px;
+  display: inline;
+}
+.submitInput{
+  width: 100%
 }

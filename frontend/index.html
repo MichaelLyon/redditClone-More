@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app='redditClone'>
+<html ng-app='redditClone' ng-controller='mainController'>
 
 <head>
   <meta charset="utf-8">
@@ -7,6 +7,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/main.css" media="screen" title="no title" charset="utf-8">
+
 </head>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -24,11 +25,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">Link</a></li>
+        <li><a href='#' ng-click='showSubmitForm();'>Link</a></li>
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" class="form-control" placeholder="Search" ng-model='search[param]'>
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
@@ -36,7 +37,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
+            <li><a href="#" ng-click='showSubmitForm();'>Action</a></li>
             <li><a href="#">Another action</a></li>
             <li><a href="#">Something else here</a></li>
             <li role="separator" class="divider"></li>
@@ -52,11 +53,36 @@
   <!-- /.container-fluid -->
 </nav>
 
-<body ng-cloak ng-controller='mainController'>
+<body ng-cloak>
   <div class="funBG container-fluid">
-    <div class="repeatDiv" >
+    <div class="formSubmitDiv" ng-show="sumbitPostShowFormBool">
+      <form ng-submit='submit(post)' ng-model='post'>
+        <div class="form-group">
+          <label for="inputTitle">Title</label>
+          <input type="text" class="form-control" id="inputTitle" aria-describedby="emailHelp" ng-model="post.title" placeholder="Enter Title">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else. ;)</small>
+        </div>
+        <div class="form-group">
+          <label for="inputAuthor">Author</label>
+          <input type="text" class="form-control" id="inputAuthor" aria-describedby="emailHelp" ng-model="post.author" placeholder="Enter Author">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else. ;)</small>
+        </div>
+        <div class="form-group">
+          <label for="inputUrl">Image URL</label>
+          <input type="text" class="form-control" id="inputUrl" aria-describedby="emailHelp" ng-model="post.imageUrl" placeholder="Enter Image URL">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else. ;)</small>
+        </div>
+        <div class="form-group">
+          <label for="inputDescription">Description</label>
+          <input type="text" class="form-control" id="inputDescription" aria-describedby="emailHelp" ng-model="post.description" placeholder="Enter a post description">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else. ;)</small>
+        </div>
+        <input type="submit" id='submit' class="btn btn-primary" value="Submit Post"></input>
+      </form>
+    </div>
+    <div class="repeatDiv">
       <div class="sideBar col-sm-2">
-        <div class="thumbnail text-center bg-grey" >
+        <div class="thumbnail text-center bg-grey">
           <h3 class="redditSubredditTitle">Subreddits</h3>
           <div class="redditSubredditSideBarDiv" ng-repeat='sub in subredditObj.subs'>
             <button type="button" name="button" ng-click='getPosts(sub.data.display_name);'>{{sub.data.url}}</button>
@@ -65,14 +91,14 @@
       </div>
     </div>
     <div class="repeatDivScroll">
-      <div class="col-sm-10" ng-repeat="post in subredditObj.posts">
+      <div class="col-sm-10" ng-repeat="post in subredditObj.posts |filter:search">
         <div class="thumbnail text-center bg-grey">
           <div class="redditSubredditMainDiv">
             <div class="redditSubbredditPictureDiv">
               <img ng-src="{{post.data.thumbnail}}" alt="No Image Found" />
             </div>
             <div class="redditSubredditTitleDiv">
-              <h3 class="redditSubredditsTitle">{{post.data.title}}</h3>
+              <h5 class="redditSubredditsTitle">{{post.data.title}}</h5>
             </div>
           </div>
         </div>
@@ -83,5 +109,7 @@
 <script src="js/app.js" charset="utf-8"></script>
 <script src="js/controller.js" charset="utf-8"></script>
 <script src="js/services.js" charset="utf-8"></script>
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 </html>

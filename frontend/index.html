@@ -54,14 +54,28 @@
 
 <body ng-cloak ng-controller='mainController'>
   <div class="funBG container-fluid">
-    <div class="col-sm-2">
-      <div class="thumbnail text-center bg-grey">
-        <div class="redditSubredditSideBarDiv" value="Show Div"><h3 class="redditSubredditTitle">Subreddits</h3></div>
+    <div class="repeatDiv" >
+      <div class="sideBar col-sm-2">
+        <div class="thumbnail text-center bg-grey" >
+          <h3 class="redditSubredditTitle">Subreddits</h3>
+          <div class="redditSubredditSideBarDiv" ng-repeat='sub in subredditObj.subs'>
+            <button type="button" name="button" ng-click='getPosts(sub.data.display_name);'>{{sub.data.url}}</button>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-sm-10">
-      <div class="thumbnail text-center bg-grey">
-        <div class="redditSubredditSideBarDiv" value="Show Div"><h3 class="redditSubredditTitle">Subreddits</h3></div>
+    <div class="repeatDivScroll">
+      <div class="col-sm-10" ng-repeat="post in subredditObj.posts">
+        <div class="thumbnail text-center bg-grey">
+          <div class="redditSubredditMainDiv">
+            <div class="redditSubbredditPictureDiv">
+              <img ng-src="{{post.data.thumbnail}}" alt="No Image Found" />
+            </div>
+            <div class="redditSubredditTitleDiv">
+              <h3 class="redditSubredditsTitle">{{post.data.title}}</h3>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

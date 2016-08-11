@@ -1,12 +1,22 @@
 var app = angular.module('redditClone.controllers', [])
 
 app.controller('mainController', ['$scope', '$http', function($scope, $http) {
-  $scope.subreddit = {};
-  $scope.subreddit.title;
-  $scope.subreddit.imageURL;
-  $scope.subreddit.brief;
-	$http.get('https://www.reddit.com/r/webdev/top/.json?limit=50').then(function(data) {
-		console.log(data.data.data);
-	})
+  var redditSubs = this
+  $scope.subredditObj = {};
 
+  $scope.subSelected = '';
+
+
+  $scope.getPosts = function(subName){
+    $http.get(`https://www.reddit.com/r/${subName}/top/.json?limit=50`).then(function(data) {
+      $scope.subredditObj.posts = data.data.data.children;
+  	})
+  }
+    getSubs = function () {
+    $http.get('https://www.reddit.com/reddits.json?limit=50&after=t3_10omtd/').then(function(data) {
+      $scope.subredditObj.subs = data.data.data.children
+  	})
+  }
+
+getSubs();
 }])

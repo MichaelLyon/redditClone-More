@@ -1,16 +1,21 @@
 body{
-  background-color: lightblue
+background: -webkit-linear-gradient(-45deg, rgba(243,226,199,1) 0%,rgba(193,158,103,1) 37%,rgba(182,141,76,1) 69%,rgba(233,212,179,1) 100%);
+/*background: -webkit-linear-gradient(-45deg, rgba(206,219,233,1) 0%,rgba(170,197,222,1) 17%,rgba(97,153,199,1) 50%,rgba(58,132,195,1) 51%,rgba(65,154,214,1) 59%,rgba(75,184,240,1) 71%,rgba(58,139,194,1) 84%,rgba(38,85,139,1) 100%);*/
 }
+
 .redditSubredditSideBarDiv{
-  margin-top: 10%;
-  margin-bottom: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
   overflow: hidden;
 }
 
 .sideBar{
   float:left;
 }
-
+.sidebarThumb{
+  background: -webkit-linear-gradient(-45deg,rgba(0,0,0,0) 0%,rgba(0,0,0,0.65)  100%);
+  border: 0px;
+}
 .repeatDivScroll{
   overflow-y: scroll;
   height: 100vh;
@@ -38,4 +43,9 @@ body{
 }
 .submitInput{
   width: 100%
+}
+.bottomSubText{
+  display: inline-block;
+  margin: 0px;
+  margin-top: 20px;
 }

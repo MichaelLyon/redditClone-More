@@ -4,6 +4,9 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
   var redditSubs = this
   $scope.subredditObj = {};
   $scope.sumbitPostShowFormBool = false;
+  $scope.timeStamp = new Date(new Date().getTime()).toString();
+  console.log($scope.timeStamp);
+  // $scope.timeArray = [];
 
   $scope.getPosts = function(subName){
     $http.get(`https://www.reddit.com/r/${subName}/top/.json?limit=50`).then(function(data) {
@@ -14,7 +17,6 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
     getSubs = function () {
     $http.get('https://www.reddit.com/reddits.json?limit=50&after=t3_10omtd/').then(function(data) {
       $scope.subredditObj.subs = data.data.data.children
-
   	})
   }
   $scope.showSubmitForm = function () {
@@ -24,6 +26,12 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
     $scope.sumbitPostShowFormBool = false;
     console.log(post);
   }
+
+  $scope.getTime = function(mili) {
+    var dateObject = new Date(mili*1000);
+    return dateObject.toString();
+      }
+
 
 getSubs();
 }])

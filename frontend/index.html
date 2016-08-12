@@ -99,14 +99,24 @@
             </div>
             <div class="redditSubredditTitleDiv">
               <h5 class="redditSubredditsTitle">{{post.data.title}}</h5>
-              <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
-
+            </div>
+            <div class="voteArrowsDiv">
+              {{trimString(post.data.ups.toString())}}
             </div>
             <div class="bottomSubDiv">
-              <h5 class='bottomSubText'>{{getTime(post.data.created)}}</h5>
+              <h5 class='bottomSubText'>{{getTime(post.data.created_utc)}} &nbsp&nbsp&nbsp |
+                 &nbsp&nbsp&nbsp Created By: {{post.data.author}} &nbsp&nbsp&nbsp |
+                 &nbsp&nbsp&nbsp Comments: {{post.data.num_comments}} &nbsp&nbsp&nbsp |
+                 &nbsp&nbsp&nbsp <span ng-click='addComment'class="commentSpan">Add Comment</span></h5>
+              <span class="glyphiconArrows glyphicon glyphicon-arrow-up" ng-class="{upvote: post.data.upVote === true}" ng-click='upVoteCheck(post)' aria-hidden="true"></span>
+              <!-- ng-class="{correctAnswer: pingView.player2Score >= 11, wrongAnswer: scoreChecker===true}"  -->
+              <span class="glyphiconArrows glyphicon glyphicon-arrow-down" ng-class="{downvote: post.data.downVote === true}" ng-click='downVoteCheck(post)' aria-hidden="true"></span>
             </div>
           </div>
         </div>
+      </div>
+      <div class="commentSectionDiv thumbnail" ng-show='commentBool'>
+        <h3>Comments</h3>
       </div>
     </div>
   </div>

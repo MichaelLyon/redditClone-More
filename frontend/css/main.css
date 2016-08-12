@@ -33,7 +33,7 @@ background: -webkit-linear-gradient(-45deg, rgba(243,226,199,1) 0%,rgba(193,158,
 }
 .redditSubredditTitleDiv{
   display: inline-block;
-  width: 75%;
+  width: 72%;
   height: 100%;
   vertical-align: top;
 }
@@ -48,4 +48,26 @@ background: -webkit-linear-gradient(-45deg, rgba(243,226,199,1) 0%,rgba(193,158,
   display: inline-block;
   margin: 0px;
   margin-top: 20px;
+}
+.glyphiconArrows{
+  float:right;
+  font-size: 20px;
+  top: 20px;
+}
+.voteArrowsDiv{
+  display: inline-block;
+  float:right;
+  position: relative;
+  top: 40px;
+}
+.downvote{
+  /*background-color: #9393FF;*/
+  color:#9393FF;
+}
+.upvote{
+  /*background-color: #F14000;*/
+  color: #F14000;
+}
+.commentSpan{
+  display: inline-block;
 }

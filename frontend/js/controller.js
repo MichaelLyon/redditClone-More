@@ -1,6 +1,6 @@
 var app = angular.module('redditClone.controllers', [])
 
-app.controller('mainController', ['$scope', '$http', function($scope, $http) {
+app.controller('mainController', ['$scope', '$http', function($scope, $http, $window) {
 	var redditSubs = this
 	$scope.subredditObj = {};
 	$scope.sumbitPostShowFormBool = false;

@@ -76,3 +76,24 @@ background: -webkit-linear-gradient(-45deg, rgba(181,189,200,1) 0%,rgba(130,140,
 .commentSectionDiv{
   background: -webkit-linear-gradient(-45deg, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
 }
+
+.row.ng-enter {
+  -webkit-transition: 1s;
+  transition: 1s;
+  opacity: 0;
+}
+
+.row.ng-enter-active {
+  opacity: 1;
+}
+
+.row.ng-leave {
+  -webkit-transition: 1s;
+  transition: 1s;
+
+  opacity: 1;
+}
+
+.row.ng-leave-active {
+  opacity: 0;
+}

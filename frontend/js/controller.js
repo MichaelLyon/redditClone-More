@@ -8,8 +8,22 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
 	$scope.upVoteBool = false;
 	$scope.downVoteBool = false;
   $scope.commentBool = false;
+  $scope.newCommentBool = false;
+  $scope.commentArray = [];
 
 	var todaysDayString = $scope.timeStamp.slice(0, 3);
+
+  $scope.commentSubmit = function (commentNew, post) {
+    post.data.num_comments += 1;
+    post.data.commentArray.push(commentNew.comment);
+    post.data.comments = commentNew.comment;
+  }
+  $scope.addComment = function (post) {
+    post.data.commentSection = !post.data.commentSection;
+  }
+  $scope.triggerCommentForm = function () {
+    $scope.newCommentBool = !$scope.newCommentBool;
+  }
 
 	$scope.upVoteCheck = function(post) {
     post.data.ups += 1;
@@ -30,6 +44,8 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
 			$scope.subredditObj.posts.forEach(function(post) {
 				post.data.upVote = false;
 				post.data.downVote = false;
+        post.data.commentSection = false;
+        post.data.commentArray = [];
 			})
 			console.log($scope.subredditObj.posts);
 		})
@@ -53,6 +69,9 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
     $scope.commentObj.data.ups =0;
     $scope.commentObj.data.upVote = false;
     $scope.commentObj.data.downVote = false;
+    $scope.commentObj.commentSection = false;
+    $scope.commentObj.data.num_comments = 0;
+    $scope.commentObj.data.commentArray = [];
     $scope.subredditObj.posts.push($scope.commentObj);
 	}
 

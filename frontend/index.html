@@ -91,7 +91,7 @@
       </div>
     </div>
     <div class="repeatDivScroll">
-      <div class="col-sm-10" ng-repeat="post in subredditObj.posts |filter:search">
+      <div class="col-sm-10" ng-repeat="post in subredditObj.posts |filter:search | orderBy: -data.ups">
         <div class="thumbnail text-center bg-grey">
           <div class="redditSubredditMainDiv">
             <div class="redditSubbredditPictureDiv">
@@ -103,21 +103,39 @@
             <div class="voteArrowsDiv">
               {{trimString(post.data.ups.toString())}}
             </div>
+            <div class="urlAndDescriptionDiv">
+              <a href="{{post.data.url}}">URL to the Media</a>
+            </div>
             <div class="bottomSubDiv">
               <h5 class='bottomSubText'>{{getTime(post.data.created_utc)}} &nbsp&nbsp&nbsp |
                  &nbsp&nbsp&nbsp Created By: {{post.data.author}} &nbsp&nbsp&nbsp |
                  &nbsp&nbsp&nbsp Comments: {{post.data.num_comments}} &nbsp&nbsp&nbsp |
-                 &nbsp&nbsp&nbsp <span ng-click='addComment'class="commentSpan">Add Comment</span></h5>
+                 &nbsp&nbsp&nbsp <span ng-click='addComment(post)' class="commentSpan">Add Comment</span></h5>
               <span class="glyphiconArrows glyphicon glyphicon-arrow-up" ng-class="{upvote: post.data.upVote === true}" ng-click='upVoteCheck(post)' aria-hidden="true"></span>
               <!-- ng-class="{correctAnswer: pingView.player2Score >= 11, wrongAnswer: scoreChecker===true}"  -->
               <span class="glyphiconArrows glyphicon glyphicon-arrow-down" ng-class="{downvote: post.data.downVote === true}" ng-click='downVoteCheck(post)' aria-hidden="true"></span>
             </div>
           </div>
         </div>
+        <div class="commentSectionDiv thumbnail" ng-show='post.data.commentSection'>
+          <h3 style="text-align:center; display:inline-block">Comments</h3>
+          <button type="button" class"btn btn-primary" name="button" style="float:right" ng-click="triggerCommentForm()">Add New</button>
+          <p>
+            {{post.data.link_flair_text || post.data.description}}
+          </p>
+          <p ng-repeat='commentIndex in post.data.commentArray'>
+            {{commentIndex}}
+          </p>
+          <form ng-submit='commentSubmit(commentNew,post)' ng-model='commentNew' ng-show='newCommentBool'>
+            <div class="form-group">
+              <label for="inputTitle">Title</label>
+              <input type="text" class="form-control" id="inputTitle" aria-describedby="emailHelp" ng-model="commentNew.comment" placeholder="Enter Title">
+            </div>
+            <input type="submit" id='submit' class="btn btn-primary" value="Submit Post"></input>
+          </form>
+        </div>
       </div>
-      <div class="commentSectionDiv thumbnail" ng-show='commentBool'>
-        <h3>Comments</h3>
-      </div>
+
     </div>
   </div>
 </body>

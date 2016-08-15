@@ -1,6 +1,21 @@
 var app = angular.module('redditClone.controllers', [])
 
+app.filter('orderObjectBy', function() {
+  return function(items, field, reverse) {
+    var filtered = [];
+    angular.forEach(items, function(item) {
+      filtered.push(item);
+    });
+    filtered.sort(function (a, b) {
+      return (a[field] > b[field] ? 1 : -1);
+    });
+    if(reverse) filtered.reverse();
+    return filtered;
+  };
+});
+
 app.controller('mainController', ['$scope', '$http', function($scope, $http, $window) {
+  // alert('Please select a subreddit before proceeding. Otherwise, you will break everything')
 	var redditSubs = this
 	$scope.subredditObj = {};
 	$scope.sumbitPostShowFormBool = false;
@@ -12,6 +27,17 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http, $wi
   $scope.commentArray = [];
 
 	var todaysDayString = $scope.timeStamp.slice(0, 3);
+
+  $scope.sortBy = function(propertyName) {
+     $scope.propertyName = '';
+     if(propertyName === 'votes'){
+       $scope.propertyName = 'ups'
+     }
+     if(propertyName === 'comments'){
+       $scope.propertyName = 'num_comments';
+     }
+     console.log($scope.propertyName);
+   };
 
   $scope.commentSubmit = function (commentNew, post) {
     post.data.num_comments += 1;
@@ -72,6 +98,7 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http, $wi
     $scope.commentObj.commentSection = false;
     $scope.commentObj.data.num_comments = 0;
     $scope.commentObj.data.commentArray = [];
+    $scope.commentObj.data.created_utc = $scope.getTime($scope.timeStamp);
     $scope.subredditObj.posts.push($scope.commentObj);
 	}
 

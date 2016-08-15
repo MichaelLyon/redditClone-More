@@ -38,13 +38,10 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort by <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#" ng-click='showSubmitForm();'>Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="#" ng-click="sortBy('votes')">Votes</a></li>
+
             <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="#" ng-click="sortBy('comments')">Comments</a></li>
           </ul>
         </li>
       </ul>
@@ -57,28 +54,28 @@
 <body ng-cloak>
   <div class="funBG container-fluid">
     <div class="formSubmitDiv" ng-show="sumbitPostShowFormBool">
-      <form ng-submit='submit(post)' ng-model='post'>
-        <div class="form-group">
+      <form name='submitForm' ng-submit='submit(post)' ng-model='post' novalidate>
+        <div class="form-group" ng-class="{ 'has-error' : submitForm.title.$invalid}">
           <label for="inputTitle">Title</label>
-          <input type="text" class="form-control" id="inputTitle" aria-describedby="emailHelp" ng-model="post.title" placeholder="Enter Title">
+          <input type="text" class="form-control" name='title' id="inputTitle" aria-describedby="emailHelp" ng-model="post.title" placeholder="Enter Title" ng-minlength="{{4}}" ng-maxlength="{{20}}" required>
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else. ;)</small>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error' : submitForm.$invalid}">
           <label for="inputAuthor">Author</label>
-          <input type="text" class="form-control" id="inputAuthor" aria-describedby="emailHelp" ng-model="post.author" placeholder="Enter Author">
+          <input type="text" class="form-control" id="inputAuthor" aria-describedby="emailHelp" ng-model="post.author" placeholder="Enter Author" ng-minlength="{{4}}" ng-maxlength="{{20}}" required>
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else. ;)</small>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error' : submitForm.$invalid}">
           <label for="inputUrl">Image URL</label>
-          <input type="text" class="form-control" id="inputUrl" aria-describedby="emailHelp" ng-model="post.imageUrl" placeholder="Enter Image URL">
+          <input type="text" class="form-control" id="inputUrl" aria-describedby="emailHelp" ng-model="post.imageUrl" placeholder="Enter Image URL" ng-minlength="{{4}}" ng-maxlength="{{100}}" required>
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else. ;)</small>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error' : submitForm.$invalid}">
           <label for="inputDescription">Description</label>
-          <input type="text" class="form-control" id="inputDescription" aria-describedby="emailHelp" ng-model="post.description" placeholder="Enter a post description">
+          <input type="text" class="form-control" id="inputDescription" aria-describedby="emailHelp" ng-model="post.description" placeholder="Enter a post description" ng-minlength="{{0}}" ng-maxlength="{{200}}" required>
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else. ;)</small>
         </div>
-        <input type="submit" id='submit' class="btn btn-primary" value="Submit Post"></input>
+        <input type="submit" ng-disabled="submitForm.$invalid" id='submit' class="btn btn-primary" value="Submit Post"></input>
       </form>
     </div>
     <div class="repeatDiv">
@@ -92,7 +89,7 @@
       </div>
     </div>
     <div class="repeatDivScroll">
-      <div class="col-sm-10" ng-repeat="post in subredditObj.posts |filter:search | orderBy: -data.ups">
+      <div class="col-sm-10" ng-repeat="post in subredditObj.posts | filter:search | orderBy: subredditObj">
         <div class="thumbnail text-center bg-grey">
           <div class="redditSubredditMainDiv">
             <div class="redditSubbredditPictureDiv">

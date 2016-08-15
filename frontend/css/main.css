@@ -112,3 +112,7 @@ background: -webkit-linear-gradient(-45deg, rgba(249,252,247,1) 0%,rgba(245,249,
   bottom: 10px;
   font-size: 20px;
 }
+.thumbnail{
+  background-color: #F4F4E6;
+  /*background: -webkit-radial-gradient(center, ellipse cover, rgba(252,255,244,1) 0%,rgba(223,229,215,1) 91%,rgba(215,224,206,1) 100%);*/
+}

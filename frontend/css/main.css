@@ -10,6 +10,10 @@ background: -webkit-linear-gradient(-45deg, rgba(249,252,247,1) 0%,rgba(245,249,
   margin-bottom: 5%;
   overflow: hidden;
 }
+.subRedButtons{
+  color: #4e91f0;
+  background-color: #cee9e9;
+}
 
 .sideBar{
   float:left;
@@ -20,9 +24,9 @@ background: -webkit-linear-gradient(-45deg, rgba(249,252,247,1) 0%,rgba(245,249,
   /*background: -webkit-linear-gradient(-45deg, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);*/
   /*box-shadow: -8px 6px 31px 0px rgba(0,0,0,0.75);*/
   box-shadow: 0px 0px 0px 10px rgba(233,233,206,1);
-  background-color: #e9e9ce;
-  border: 1px solid black;
+  background-color: #f4f4e6;
   border-radius: 0px;
+  color: #797979;
 }
 .commentSectionDiv{
   background: -webkit-linear-gradient(-45deg, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
@@ -51,10 +55,7 @@ background: -webkit-linear-gradient(-45deg, rgba(249,252,247,1) 0%,rgba(245,249,
   height: 100%;
   vertical-align: top;
 }
-.redditSubredditsTitle{
-  margin: 0px;
-  display: inline;
-}
+
 .submitInput{
   width: 100%
 }
@@ -105,4 +106,9 @@ background: -webkit-linear-gradient(-45deg, rgba(249,252,247,1) 0%,rgba(245,249,
 
 .row.ng-leave-active {
   opacity: 0;
+}
+.redditSubredditTitle{
+  position: relative;
+  bottom: 10px;
+  font-size: 20px;
 }

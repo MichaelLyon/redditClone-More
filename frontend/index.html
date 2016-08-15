@@ -83,7 +83,7 @@
         <div class="sidebarThumb thumbnail text-center bg-grey">
           <h3 class="redditSubredditTitle">Subreddits</h3>
           <div class="redditSubredditSideBarDiv" ng-repeat='sub in subredditObj.subs'>
-            <button type="button" class='btn btn-warning'style="color:#4e91f0" name="button" ng-click='getPosts(sub.data.display_name);'>{{sub.data.url}}</button>
+            <button type="button" class='subRedButtons btn btn-warning'  name="button" ng-click='getPosts(sub.data.display_name);'>{{sub.data.url}}</button>
           </div>
         </div>
       </div>
